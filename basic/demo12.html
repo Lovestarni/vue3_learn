@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'sky', //model
+                price: 10,
+                number: 2
+            }
+        },
+        methods: {
+            handleItemClick() {
+                this.message = this.message === 'danni' ? 'chenqian' : 'danni'
+            },
+            // 只要模版重新渲染，就会重新计算
+            getTotal() {
+                return Date.now()
+            },
+            addCount() {
+                this.number++
+            }
+        },
+        computed: {
+            total() {
+                return this.price * this.number
+                // return Date.now()
+            }
+        },
+        template: `
+          <h2 @click="handleItemClick">{{ message }}</h2>
+          <h2 @click="addCount">总和：{{ total }}</h2>
+          <h2>总和：{{ getTotal() }}</h2>
+          <!--          这样写不够语义化，不容易维护和理解-->
+        `
+    })
+    const vm = app.mount("#app")
+    console.log(vm) //mvvm model view modelview
+</script>
+</html>

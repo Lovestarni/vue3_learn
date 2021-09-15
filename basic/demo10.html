@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: '<i>jspang.com</i>', //model
+                count: 2,
+                name: 'title',
+                event: 'click'
+            }
+        },
+        methods: {
+            handleItemClick() {
+                alert('sky')
+            },
+            handleButton() {
+                alert('sky')
+            }
+        },
+        template: `<h2 @[event]='handleItemClick'
+                       :[name]="message"> {{ message }} </h2>
+        <form action="https://www.baidu.com" @click.prevent="handleButton">
+        <button type="submit">submit</button>
+        </form>`
+    })
+    const vm = app.mount("#app")
+    console.log(vm) //mvvm model view modelview
+</script>
+</html>

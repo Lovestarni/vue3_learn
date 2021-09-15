@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                girlList: ['danni', 'chenqian', 'meijun'],
+                inputValue: ""
+            }
+        },
+        methods: {
+            addGirls() {
+                this.girlList.push(this.inputValue)
+            }
+        },
+        template: `
+          <div>
+          <my-title></my-title>
+          <input v-model="inputValue">
+          <button v-on:click="addGirls">增加佳丽</button>
+          <ul>
+            <my-girls v-for="(item, index) of girlList"
+                      v-bind:item="item"
+                      v-bind:index="index"/>
+          </ul>
+          </div>
+        `
+    })
+    // 静态组件
+    app.component('my-title', {
+        template: '<h1 style="text-align:center">象牙山</h1>'
+    })
+    app.component('my-girls', {
+        props: ['index', 'item'],
+        template: `
+          <li>[{{ index }}]-{{ item }}</li>`
+    })
+    app.mount("#app")
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: '<i>jspang.com</i>', //model
+                count: 2
+            }
+        },
+        methods: {
+            handleItemClick() {
+                this.message = this.message === 'danni' ? 'chenqian' : 'danni'
+            }
+        },
+        template: `<h2 v-on:click='handleItemClick'
+                       v-html="message"
+                       v-once> {{ message }} </h2>
+        <h2
+            v-bind:title="message">{{ message }}</h2>
+        <h2>{{ 1 + 2 }}</h2>
+        <h2>{{ count > 2 ? 'big' : 'small' }}</h2>`
+        // {{ }} 为插值表达式
+        //定义后，vue将model和view自动绑定
+    })
+    const vm = app.mount("#app")
+    console.log(vm) //mvvm model view modelview
+</script>
+</html>

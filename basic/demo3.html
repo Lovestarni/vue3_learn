@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                content: "",
+                setMeal: "套餐1, 套餐2",
+                isShowMeal: false
+            }
+        },
+        methods:{
+            welcomeClick(){
+                // alert('222')
+                this.content="欢迎光临"
+            },
+            byeButtonClick(){
+                // alert('111')
+                this.content="欢迎下次光临"
+            },
+            showBtnClick(){
+                this.isShowMeal = !this.isShowMeal //标志位直接取反，方便处理翻转条件
+            }
+        },
+        template: `
+          <div>
+              <div>{{ content }}</div>
+              <button v-on:click="welcomeClick">有顾客来</button>
+              <button v-on:click="byeButtonClick">没有顾客来</button>
+          <div>
+              <div v-if="isShowMeal">{{ setMeal }}</div>
+              <button v-on:click="showBtnClick">"显示/隐藏"</button>
+          </div>
+          </div>`
+    }).mount("#app")
+</script>
+</html>
